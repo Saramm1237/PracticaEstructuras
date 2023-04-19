@@ -1,3 +1,5 @@
+from juego.depredador import Depredador
+
 class Alien:
     def __init__(self, tablero):
         self.vida = 50
@@ -23,3 +25,10 @@ class Alien:
         elif self.nodo_actual.value == "-":
             self.vida -= 10
             self.nodo_actual.value = None
+
+    def atacar(self, Depredador):
+        if (self.nodo_actual.up is Depredador.nodo_actual or
+        self.nodo_actual.down is Depredador.nodo_actual or
+        self.nodo_actual.next is Depredador.nodo_actual or
+        self.nodo_actual.prev is Depredador.nodo_actual):
+            Depredador.vida -= 10
