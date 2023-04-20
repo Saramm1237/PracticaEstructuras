@@ -1,12 +1,14 @@
 import random
 
+
 class Node:
-  def __init__(self, value):
-    self.value = value
-    self.next = None
-    self.prev = None
-    self.down = None
-    self.up = None
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+        self.prev = None
+        self.down = None
+        self.up = None
+
 
 class Tablero:
     def __init__(self, n):
@@ -33,6 +35,7 @@ class Tablero:
             self.tablero[i][j].value = simbolo
 
     def imprimir(self, alien=None, depredador=None):
+        print("")
         for i in range(self.n):
             fila = []
             for j in range(self.n):
@@ -45,3 +48,4 @@ class Tablero:
                 else:
                     fila.append(self.tablero[i][j].value)
             print("[" + "|".join(fila) + "]")
+        print("")

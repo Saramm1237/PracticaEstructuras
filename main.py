@@ -1,5 +1,6 @@
-from juego.tablero import Tablero
+from juego.juego import Juego
 
-prueba = Tablero(4)
-prueba.imprimir()
+juego = Juego(4)
+juego.jugar()
+
 

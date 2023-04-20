@@ -1,5 +1,3 @@
-from juego.depredador import Depredador
-
 class Alien:
     def __init__(self, tablero):
         self.vida = 50
@@ -9,7 +7,7 @@ class Alien:
     def colocar_en_tablero(self, i, j):
         self.nodo_actual = self.tablero.tablero[i][j]
 
-    def mover(self, direccion):
+    def mover(self, direccion, depredador):
         if direccion == "arriba" and self.nodo_actual.up is not None:
             self.nodo_actual = self.nodo_actual.up
         elif direccion == "abajo" and self.nodo_actual.down is not None:
@@ -18,6 +16,8 @@ class Alien:
             self.nodo_actual = self.nodo_actual.prev
         elif direccion == "derecha" and self.nodo_actual.next is not None:
             self.nodo_actual = self.nodo_actual.next
+        else:
+            print("movimiento no valido, pierde turno")
 
         if self.nodo_actual.value == "+":
             self.vida += 10
@@ -25,10 +25,12 @@ class Alien:
         elif self.nodo_actual.value == "-":
             self.vida -= 10
             self.nodo_actual.value = None
+        elif self.nodo_actual == depredador.nodo_actual:
+            self.vida -= 25
 
-    def atacar(self, Depredador):
-        if (self.nodo_actual.up is Depredador.nodo_actual or
-        self.nodo_actual.down is Depredador.nodo_actual or
-        self.nodo_actual.next is Depredador.nodo_actual or
-        self.nodo_actual.prev is Depredador.nodo_actual):
-            Depredador.vida -= 10
+    def atacar(self, depredador):
+        if (self.nodo_actual.up is depredador.nodo_actual or
+        self.nodo_actual.down is depredador.nodo_actual or
+        self.nodo_actual.next is depredador.nodo_actual or
+        self.nodo_actual.prev is depredador.nodo_actual):
+            depredador.vida -= 10
